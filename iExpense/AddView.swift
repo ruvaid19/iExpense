@@ -13,7 +13,6 @@ struct AddView: View {
     @State private var amount = 0.0
 
     let types = ["Business", "Personal"]
-
     var expenses: Expenses
 
     @Environment(\.dismiss) var dismiss
@@ -40,16 +39,16 @@ struct AddView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        let expense = ExpenseItem(
+                        let item = ExpenseItem(
                             name: name,
                             type: type,
                             amount: amount
                         )
 
-                        expenses.items.append(expense)
+                        expenses.items.append(item)
                         dismiss()
                     }
-                    .disabled(name.isEmpty)
+                    .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
