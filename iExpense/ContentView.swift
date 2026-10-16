@@ -43,6 +43,8 @@ struct ContentView: View {
     @State private var expenses = Expenses()
     @State private var showingAddExpense = false
 
+    private let currencyCode = Locale.current.currency?.identifier ?? "INR"
+
     var body: some View {
         NavigationStack {
             List {
@@ -59,7 +61,7 @@ struct ContentView: View {
 
                         Text(
                             item.amount,
-                            format: .currency(code: "USD")
+                            format: .currency(code: currencyCode)
                         )
                     }
                 }
@@ -72,7 +74,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
-                AddView(expenses: expenses)
+                AddView(expenses: expenses, currencyCode: currencyCode)
             }
         }
     }
