@@ -49,7 +49,11 @@ struct AddView: View {
                         expenses.items.append(item)
                         dismiss()
                     }
-                    .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .disabled(
+                        name.trimmingCharacters(
+                            in: .whitespaces
+                        ).isEmpty
+                    )
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
@@ -63,5 +67,8 @@ struct AddView: View {
 }
 
 #Preview {
-    AddView(expenses: Expenses(), currencyCode: "INR")
+    AddView(
+        expenses: Expenses(),
+        currencyCode: "INR"
+    )
 }

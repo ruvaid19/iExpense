@@ -43,7 +43,8 @@ struct ContentView: View {
     @State private var expenses = Expenses()
     @State private var showingAddExpense = false
 
-    private let currencyCode = Locale.current.currency?.identifier ?? "INR"
+    private let currencyCode =
+        Locale.current.currency?.identifier ?? "INR"
 
     var body: some View {
         NavigationStack {
@@ -63,6 +64,12 @@ struct ContentView: View {
                             item.amount,
                             format: .currency(code: currencyCode)
                         )
+                        .font(.headline)
+                        .foregroundStyle(
+                            item.amount < 10 ? .green :
+                            item.amount < 100 ? .orange :
+                            .red
+                        )
                     }
                 }
                 .onDelete(perform: removeItems)
@@ -74,7 +81,10 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
-                AddView(expenses: expenses, currencyCode: currencyCode)
+                AddView(
+                    expenses: expenses,
+                    currencyCode: currencyCode
+                )
             }
         }
     }
