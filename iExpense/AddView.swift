@@ -18,25 +18,44 @@ struct AddView: View {
 
     @Environment(\.dismiss) var dismiss
 
+    private let backgroundGradient = LinearGradient(
+        colors: [
+            Color(red: 0.04, green: 0.28, blue: 0.30),
+            Color(red: 0.08, green: 0.43, blue: 0.42),
+            Color(red: 0.25, green: 0.58, blue: 0.48)
+        ],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+
     var body: some View {
         NavigationStack {
-            Form {
-                TextField("Name", text: $name)
+            ZStack {
+                backgroundGradient
+                    .ignoresSafeArea()
 
-                Picker("Type", selection: $type) {
-                    ForEach(types, id: \.self) { item in
-                        Text(item)
+                Form {
+                    Section("Expense Details") {
+                        TextField("Name", text: $name)
+
+                        Picker("Type", selection: $type) {
+                            ForEach(types, id: \.self) { item in
+                                Text(item)
+                            }
+                        }
+
+                        TextField(
+                            "Amount",
+                            value: $amount,
+                            format: .currency(code: currencyCode)
+                        )
+                        .keyboardType(.decimalPad)
                     }
+                    .listRowBackground(Color.white.opacity(0.88))
                 }
-
-                TextField(
-                    "Amount",
-                    value: $amount,
-                    format: .currency(code: currencyCode)
-                )
-                .keyboardType(.decimalPad)
+                .scrollContentBackground(.hidden)
             }
-            .navigationTitle("Add new expense")
+            .navigationTitle("Add Expense")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
@@ -62,7 +81,9 @@ struct AddView: View {
                     }
                 }
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
         }
+        .tint(.white)
     }
 }
 
