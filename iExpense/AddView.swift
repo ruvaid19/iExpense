@@ -11,6 +11,7 @@ struct AddView: View {
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = 0.0
+    @FocusState private var amountIsFocused: Bool
 
     let types = ["Business", "Personal"]
     var expenses: Expenses
@@ -50,6 +51,16 @@ struct AddView: View {
                             format: .currency(code: currencyCode)
                         )
                         .keyboardType(.decimalPad)
+                        .focused($amountIsFocused)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
+
+                                Button("Done") {
+                                    amountIsFocused = false
+                                }
+                            }
+                        }
                     }
                     .listRowBackground(Color.white.opacity(0.88))
                 }
