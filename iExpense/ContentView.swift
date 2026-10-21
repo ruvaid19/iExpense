@@ -155,8 +155,8 @@ struct ContentView: View {
             )
             .font(.headline)
             .foregroundStyle(
-                item.amount < 10 ? .green :
-                item.amount < 100 ? .orange :
+                item.amount < 500 ? .green :
+                item.amount < 1000 ? .orange :
                 .red
             )
         }
