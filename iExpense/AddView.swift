@@ -62,7 +62,7 @@ struct AddView: View {
                             }
                         }
                     }
-                    .listRowBackground(Color.white.opacity(0.88))
+                    .listRowBackground(Color.white.opacity(0.25))
                 }
                 .scrollContentBackground(.hidden)
             }
