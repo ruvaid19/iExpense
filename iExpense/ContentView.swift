@@ -50,7 +50,7 @@ struct ContentView: View {
         colors: [
             Color(red: 0.04, green: 0.28, blue: 0.30),
             Color(red: 0.08, green: 0.43, blue: 0.42),
-            Color(red: 0.12, green: 0.58, blue: 0.48)
+            Color(red: 0.25, green: 0.58, blue: 0.48)
         ],
         startPoint: .topLeading,
         endPoint: .bottomTrailing
